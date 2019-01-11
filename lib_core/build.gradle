@@ -34,4 +34,8 @@ dependencies {
     //黄油刀
     implementation  'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    //okhttp网络请求框架
+    api 'com.squareup.okhttp3:okhttp:3.12.1'
+    //    ok拦截器
+    api 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 }

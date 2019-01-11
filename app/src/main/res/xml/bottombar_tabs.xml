@@ -1,0 +1,26 @@
+<tabs>
+    <tab
+        icon="@drawable/home_selector"
+        id="@+id/tab_home"
+        title="" />
+        <!--barColorWhenSelected="#e4ce27"-->
+
+    <tab
+        icon="@drawable/circle_selector"
+        id="@+id/tab_circle"
+        title="" />
+    <tab
+        icon="@drawable/cart_btn"
+        id="@+id/tab_cart"
+        title="" />
+    <tab
+        icon="@drawable/list_select"
+        id="@+id/tab_list"
+        title="" />
+    <tab
+        icon="@drawable/my_select"
+        id="@+id/tab_my"
+        title="" />
+        <!--barColorWhenSelected="#ed0808"-->
+
+</tabs>
