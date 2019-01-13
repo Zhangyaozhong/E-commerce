@@ -5,8 +5,7 @@
     android:background="#fff"
     android:orientation="vertical"
     android:layout_marginBottom="20dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp">
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,12 +25,21 @@
             android:text="123"
             android:textColor="#ec4d78"
             android:textSize="16sp" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="12dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:src="@drawable/home_btn_moer_pink"/>
     </RelativeLayout>
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_high_life"
         android:layout_width="match_parent"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

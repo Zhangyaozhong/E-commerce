@@ -2,21 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bwie.android.e_commerceproject">
-
+    <!--允许程序获取网络信息状态，如当前的网络连接是否有效-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--允许程序获取当前WiFi接入的状态以及WLAN热点的信息-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--允许程序通过GPS芯片接收卫星的定位信息-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--允许程序通过WiFi或移动基站的方式获取用户错略的经纬度信息-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--允许程序访问额外的定位提供者指令-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <!--允许程序读取系统底层日志-->
     <uses-permission
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
-
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <meta-data
         android:name="UMENG_APPKEY"
@@ -36,16 +39,13 @@
             android:name="com.amap.api.v2.apikey"
             android:value="7a37a8be42879d2d4cb7b87635c88d88" />
 
-        <activity
-            android:name=".view.user.LoginActivity"
-            android:theme="@style/FullScreenTheme">
+        <activity android:name=".view.user.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".view.user.RegisterActivity"
             android:theme="@style/FullScreenTheme" />
@@ -54,7 +54,8 @@
         <activity
             android:name=".view.HomePageActivity"
             android:label="@string/title_activity_home_page"
-            android:theme="@style/FullScreenTheme"></activity>
+            android:theme="@style/FullScreenTheme" />
+
     </application>
 
 </manifest>

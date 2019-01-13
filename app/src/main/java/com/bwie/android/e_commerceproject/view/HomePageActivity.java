@@ -30,6 +30,7 @@ public class HomePageActivity extends BaseActivity implements BottomNavigationVi
 
     @Override
     protected void initView() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,new HomeFragment()).commit();
         navigation.setOnNavigationItemSelectedListener(this);
     }
 

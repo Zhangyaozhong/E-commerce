@@ -24,7 +24,7 @@ public class MyApp extends BaseApp {
     public void onCreate() {
         super.onCreate();
         RefWatcher refWatcher = LeakCanary.install(this);
-//        RefWatcher refWatcher =  new RefWatcher();
+        //        RefWatcher refWatcher =  new RefWatcher();
 //        refWatcher.watch();
         /*
         第三个参数为SDK调试模式开关，调试模式的行为特性如下：

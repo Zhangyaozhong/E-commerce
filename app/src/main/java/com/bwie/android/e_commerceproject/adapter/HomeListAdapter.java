@@ -56,7 +56,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 MagicFashionViewHolder magicFashionViewHolder = new MagicFashionViewHolder(view);
                 return magicFashionViewHolder;
             case 3:
-                view = LayoutInflater.from(context).inflate(R.layout.life_layout, parent, false);
+                view = LayoutInflater.from(context).inflate(R.layout.high_life_layout, parent, false);
                 HigeQualityViewHolder higeQualityViewHolder = new HigeQualityViewHolder(view);
                 return higeQualityViewHolder;
         }
