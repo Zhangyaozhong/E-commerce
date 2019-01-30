@@ -1,12 +1,16 @@
 package com.bwie.android.e_commerceproject.view.user;
 
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.bwie.android.e_commerceproject.R;
 import com.bwie.android.e_commerceproject.bean.user.LoginBean;
@@ -34,8 +38,8 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.ILoginModel, Lo
     TextView tv_zhuce;
     @BindView(R.id.cb_remember)
     CheckBox cb_remember;
-    @BindView(R.id.iv_eye)
-    ImageView iv_eye;
+    @BindView(R.id.togglePwd)
+    ToggleButton togglePwd;
     private static String SUCCESS_FLAG = "";
     private String phone;
     private String pwd;
@@ -74,17 +78,7 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.ILoginModel, Lo
 
     @Override
     protected void initView() {
-      /*  iv_eye.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction()==MotionEvent.ACTION_UP){
-                    et_pwd.setVisibility(View.INVISIBLE);
-                }else if (motionEvent.getAction()==MotionEvent.ACTION_DOWN){
-                    et_pwd.setVisibility(View.VISIBLE);
-                }
-                return false;
-            }
-        });*/
+
 //        登录
         btn_login.setOnClickListener(this);
 //        注册
@@ -97,6 +91,19 @@ public class LoginActivity extends BaseMvpActivity<LoginContract.ILoginModel, Lo
             et_pwd.setText(pwd);
             cb_remember.setChecked(true);
         }
+//        显示隐藏密码
+        togglePwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    //如果选中，显示密码
+                    et_pwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    //否则隐藏密码
+                    et_pwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
     }
 
     /**

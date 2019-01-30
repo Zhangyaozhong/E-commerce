@@ -89,6 +89,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             ((HotSellViewHolder) holder).mHotSellRv.setLayoutManager(linearLayoutManager);
+//            设置适配器
             ((HotSellViewHolder) holder).mHotSellRv.setAdapter(new HotSellAdapter(context, resultBean.getRxxp().get(0).getCommodityList()));
             ((HotSellViewHolder) holder).tv_hot_sell.setText(resultBean.getRxxp().get(0).getName());
         } else if (holder instanceof MagicFashionViewHolder) {
@@ -137,11 +138,13 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     class HotSellViewHolder extends RecyclerView.ViewHolder {
         private RecyclerView mHotSellRv;
         private TextView tv_hot_sell;
+        private ImageView iv_more;
 
         public HotSellViewHolder(View itemView) {
             super(itemView);
             mHotSellRv = itemView.findViewById(R.id.rv_hot_sell);
             tv_hot_sell = itemView.findViewById(R.id.tv_hot_sell);
+            iv_more = itemView.findViewById(R.id.iv_more);
         }
     }
 

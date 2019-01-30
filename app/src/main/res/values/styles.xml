@@ -13,4 +13,8 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="PersonTv" parent="AppTheme">
+        <item name="android:textSize">14sp</item>  <!--设置大小-->
+        <item name="android:color">#666</item>   <!--设置颜色-->
+    </style>
 </resources>

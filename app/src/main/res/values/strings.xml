@@ -21,4 +21,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_hot_sell">热销新品</string>
+    <string name="person_information">个人资料</string>
+    <string name="person_circle">我的圈子</string>
+    <string name="person_foot">我的足迹</string>
+    <string name="person_wallet">我的钱包</string>
+    <string name="person_address">我的收货地址</string>
 </resources>

@@ -1,14 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
     tools:context=".fragment.MyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/person_bg" />
 
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/person_layout_shape"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_person_name"
+            style="@style/PersonTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/marginTop_60"
+            android:text="我是吃不胖的小姐姐" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_person_name"
+            android:layout_marginTop="@dimen/marginTop_70"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/paddingLeft_24"
+            android:paddingEnd="24dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:id="@+id/iv_information"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/my_icon_information" />
+
+                <TextView
+                    style="@style/PersonTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginLeft_20"
+                    android:layout_toEndOf="@id/iv_information"
+                    android:background="@drawable/person_tv_shope"
+                    android:paddingBottom="@dimen/paddingBottom_3"
+                    android:text="@string/person_information" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_20"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:id="@+id/iv_person_circle"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/my_icon_circle" />
+
+                <TextView
+                    style="@style/PersonTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginLeft_20"
+                    android:layout_toEndOf="@id/iv_person_circle"
+                    android:background="@drawable/person_tv_shope"
+                    android:paddingBottom="@dimen/paddingBottom_3"
+                    android:text="@string/person_circle" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_20"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:id="@+id/iv_person_foot"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/my_icon_foot" />
+
+                <TextView
+                    style="@style/PersonTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginLeft_20"
+                    android:layout_toEndOf="@id/iv_person_foot"
+                    android:background="@drawable/person_tv_shope"
+                    android:paddingBottom="@dimen/paddingBottom_3"
+                    android:text="@string/person_foot" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_20"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:id="@+id/iv_person_wallet"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/my_icon_wallet" />
+
+                <TextView
+                    style="@style/PersonTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginLeft_20"
+                    android:layout_toEndOf="@id/iv_person_wallet"
+                    android:background="@drawable/person_tv_shope"
+                    android:paddingBottom="@dimen/paddingBottom_3"
+                    android:text="@string/person_wallet" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_20"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:id="@+id/iv_person_address"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/my_icon_address" />
+
+                <TextView
+                    style="@style/PersonTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginLeft_20"
+                    android:layout_toEndOf="@id/iv_person_address"
+                    android:background="@drawable/person_tv_shope"
+                    android:paddingBottom="@dimen/paddingBottom_3"
+                    android:text="@string/person_address" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/line"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-40dp">
+
+        <ImageView
+            android:id="@+id/iv_person_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon" />
+    </RelativeLayout>
+
+</RelativeLayout>

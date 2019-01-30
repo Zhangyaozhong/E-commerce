@@ -11,22 +11,98 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/iv_foot"></FrameLayout>
+        android:layout_alignBaseline="@id/rg_tab"
+        ></FrameLayout>
 
     <ImageView
         android:id="@+id/iv_foot"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="91dp"
         android:layout_alignParentBottom="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/foot_bar"
-         />
+        android:scaleType="fitXY"
+        android:src="@drawable/foot_bar" />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+    <RadioGroup
+        android:id="@+id/rg_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/navigation" />
+        android:background="@android:color/background_light"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:weightSum="5">
 
+        <RadioButton
+            android:id="@+id/home_rb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:button="@null"
+            android:drawableTop="@drawable/home_selector"
+            android:gravity="center"
+            android:paddingLeft="0dp" />
+
+        <RadioButton
+            android:id="@+id/circle_rb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:button="@null"
+            android:drawableTop="@drawable/circle_selector"
+            android:gravity="center"
+            android:paddingLeft="0dp" />
+
+        <!--</LinearLayout>-->
+        <!--给中间凸起按钮预留位置-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"></LinearLayout>
+
+        <RadioButton
+            android:id="@+id/list_rb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:button="@null"
+            android:drawableTop="@drawable/list_selector"
+            android:gravity="center"
+            android:paddingLeft="0dp" />
+
+        <RadioButton
+            android:id="@+id/person_rb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:button="@null"
+            android:drawableTop="@drawable/my_selector"
+            android:gravity="center"
+            android:paddingLeft="0dp" />
+        <!-- </LinearLayout>-->
+    </RadioGroup>
+
+    <RelativeLayout
+        android:id="@+id/send_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="85dp"
+        android:layout_above="@+id/rg_tab"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/chat_iv"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/cart_btn" />
+
+
+    </RelativeLayout>
 </RelativeLayout>

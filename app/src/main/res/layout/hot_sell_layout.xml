@@ -27,13 +27,15 @@
             android:text="123"
             android:textColor="#ff7f57"
             android:textSize="16sp" />
+
         <ImageView
+            android:id="@+id/iv_more"
             android:layout_width="24dp"
             android:layout_height="12dp"
-            android:layout_centerInParent="true"
             android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
             android:layout_marginRight="24dp"
-            android:src="@drawable/common_btn_more_yellow"/>
+            android:src="@drawable/common_btn_more_yellow" />
     </RelativeLayout>
 
 

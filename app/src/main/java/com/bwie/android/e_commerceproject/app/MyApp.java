@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.bwie.android.lib_core.application.BaseApp;
+import com.mob.MobSDK;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -23,6 +24,7 @@ public class MyApp extends BaseApp {
     @Override
     public void onCreate() {
         super.onCreate();
+        MobSDK.init(this);
         RefWatcher refWatcher = LeakCanary.install(this);
         //        RefWatcher refWatcher =  new RefWatcher();
 //        refWatcher.watch();

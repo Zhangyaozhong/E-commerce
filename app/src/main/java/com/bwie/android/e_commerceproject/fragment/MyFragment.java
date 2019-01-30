@@ -1,7 +1,5 @@
 package com.bwie.android.e_commerceproject.fragment;
 
-import android.support.v4.app.Fragment;
-
 import com.bwie.android.e_commerceproject.R;
 import com.bwie.android.lib_core.base.BaseFragment;
 

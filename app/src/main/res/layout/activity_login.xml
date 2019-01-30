@@ -64,14 +64,16 @@
                 android:layout_below="@id/et_pwd"
                 android:background="#fff"></View>
 
-            <ImageView
-                android:id="@+id/iv_eye"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/login_icon_eye_n_xxhdpi" />
 
+            <ToggleButton
+                android:id="@+id/togglePwd"
+                android:layout_width="24dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/login_icon_eye_n_xxhdpi"
+                android:textOff=""
+                android:textOn="" />
         </RelativeLayout>
 
         <RelativeLayout

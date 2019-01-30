@@ -1,5 +1,6 @@
 package com.bwie.android.e_commerceproject.view.user;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -102,7 +103,11 @@ public class RegisterActivity extends BaseMvpActivity<RegContract.IRegModel, Reg
                 if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(pwd)) {
                     persenter.register(map);
                 }
-
+                break;
+            case R.id.tv_login:
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                finish();
+                break;
         }
     }
 }
