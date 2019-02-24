@@ -38,14 +38,14 @@ public class MyMapActivity extends BaseActivity implements AMap.OnMyLocationChan
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        创建地图
         map.onCreate(savedInstanceState);
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
         if (map != null) {
@@ -55,14 +55,14 @@ public class MyMapActivity extends BaseActivity implements AMap.OnMyLocationChan
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
         map.onResume();
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         //在activity执行onPause时执行mMapView.onPause ()，暂停地图的绘制
         map.onPause();

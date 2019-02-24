@@ -23,7 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private boolean isAllowFullScreen = true;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
@@ -95,19 +95,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         LogUtil.i("onStart");
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         LogUtil.i("onStop");
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         LogUtil.i("onDestroy");
 //        解绑butterKiife
@@ -118,20 +118,20 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         LogUtil.i("onPause");
     }
 
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         LogUtil.i("onResume");
     }
 
     @Override
-    protected void onRestart() {
+    public void onRestart() {
         super.onRestart();
         LogUtil.i("onRestart");
     }

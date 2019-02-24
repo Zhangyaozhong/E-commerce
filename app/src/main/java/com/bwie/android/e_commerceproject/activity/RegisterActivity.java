@@ -1,8 +1,6 @@
-package com.bwie.android.e_commerceproject.view.user;
+package com.bwie.android.e_commerceproject.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +10,6 @@ import android.widget.TextView;
 
 import com.bwie.android.e_commerceproject.R;
 import com.bwie.android.e_commerceproject.contract.user.RegContract;
-import com.bwie.android.e_commerceproject.persenter.ProductPresenter;
 import com.bwie.android.e_commerceproject.persenter.user.RegPresenter;
 import com.bwie.android.lib_core.base.mvp.BaseMvpActivity;
 import com.bwie.android.lib_core.base.mvp.BasePersenter;
@@ -81,15 +78,6 @@ public class RegisterActivity extends BaseMvpActivity<RegContract.IRegModel, Reg
         showToast(msg);
     }
 
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
 
     @Override
     public void onClick(View view) {

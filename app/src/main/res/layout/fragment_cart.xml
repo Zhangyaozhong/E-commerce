@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.CartFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_cart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/settlement"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="我是购物车" />
+        android:id="@+id/settlement"
+        android:layout_width="118dp"
+        android:layout_height="50dp"
+        android:background="#ff5e70"
+        android:gravity="center"
+        android:text="去结算"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
-</FrameLayout>
+    <CheckBox
+        android:id="@+id/countchange"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/cart_cb_selector"
+        android:button="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_cart" />
+
+    <TextView
+        android:id="@+id/qx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="全选"
+        app:layout_constraintBottom_toBottomOf="@id/countchange"
+        app:layout_constraintLeft_toRightOf="@id/countchange"
+        app:layout_constraintTop_toTopOf="@id/countchange" />
+
+    <TextView
+        android:id="@+id/heji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="合计："
+        app:layout_constraintBaseline_toBaselineOf="@+id/countprice"
+        app:layout_constraintLeft_toRightOf="@id/qx" />
+
+    <TextView
+        android:id="@+id/countprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="￥ 0.0"
+        android:textColor="#ff0606"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/heji"
+        app:layout_constraintTop_toBottomOf="@id/rv_cart" />
+</android.support.constraint.ConstraintLayout>

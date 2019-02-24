@@ -26,4 +26,11 @@
     <string name="person_foot">我的足迹</string>
     <string name="person_wallet">我的钱包</string>
     <string name="person_address">我的收货地址</string>
+    <string name="information_tv">我的资料</string>
+    <string name="information_icon">我的头像</string>
+    <string name="information_nick_name">我的昵称</string>
+    <string name="information_password">我的密码</string>
+    <string name="wallet_balance">余额</string>
+    <string name="wallet_monetary">消费金额</string>
+    <string name="wallet_consumption_time">消费时间</string>
 </resources>

@@ -19,7 +19,7 @@ public abstract class BaseMvpActivity<M extends IBaseModel, P extends BasePersen
 
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         if (persenter != null) {
             persenter.dettach();

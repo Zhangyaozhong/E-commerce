@@ -57,19 +57,47 @@ public class OkhttpUtil {
      * get请求方式
      */
     public void doGet(String url, HashMap<String, String> parmas, final OkhttpCallback requestCallback) {
+       /* StringBuffer sb = new StringBuffer();
+        sb.append(url);
+        //判断path是否包含一个
+        if (sb.indexOf("?") != -1) {
 
-        StringBuilder p = new StringBuilder();
-        if (parmas != null && parmas.size() > 0) {
+            //判断"?"是否在最后一个
+            if (sb.indexOf("?") != sb.length() - 1) {
+                sb.append("&");
+            }
+
+        } else {
+            sb.append("?");
+        }
+
+        //遍历map集合中所有请求参数
+        for (Map.Entry<String, String> entry : parmas.entrySet()) {
+            sb.append(entry.getKey())
+                    .append("=")
+                    .append(entry.getValue())
+                    .append("&");
+        }
+
+        //判断get请求路径最后是否包含一个"&"
+        if (sb.lastIndexOf("&") != -1) {
+            sb.deleteCharAt(sb.length() - 1);
+        }*/
+      /*    StringBuilder p = new StringBuilder();
+      if (parmas != null && parmas.size() > 0) {
             for (Map.Entry<String, String> map : parmas.entrySet()) {
 
                 p.append(map.getKey()).append("=").append(map.getValue()).append("&");
+
             }
 
-            System.out.println("ppppppp====" + p.toString());
-        }
-        Request request = new Request.Builder().url(url + "?" + p.toString())
-                .get().build();
 
+        }
+        p.substring(0,p.length());
+        System.out.println("ppppppp====" + p.toString());*/
+      /*  Request request = new Request.Builder().url(url + "?" + sb.toString())
+                .get().build();*/
+        Request request = new Request.Builder().url(url).get().build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

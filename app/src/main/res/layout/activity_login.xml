@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.user.LoginActivity">
+    tools:context=".activity.LoginActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
-            android:drawableLeft="@drawable/login_icon_phone_n_xxhdpi"
+            android:drawableStart="@drawable/login_icon_phone_n_xxhdpi"
             android:drawablePadding="20dp"
             android:hint="手机号"
             android:paddingBottom="10dp"
@@ -36,7 +36,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#fff"></View>
+            android:background="#fff" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:background="#00000000"
-                android:drawableLeft="@drawable/login_icon_lock_n_xxhdpi"
+                android:drawableStart="@drawable/login_icon_lock_n_xxhdpi"
                 android:drawablePadding="20dp"
                 android:hint="登录密码"
                 android:inputType="textPassword"
@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@id/et_pwd"
-                android:background="#fff"></View>
+                android:background="#fff" />
 
 
             <ToggleButton
@@ -70,7 +70,7 @@
                 android:layout_width="24dp"
                 android:layout_height="15dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:background="@drawable/login_icon_eye_n_xxhdpi"
                 android:textOff=""
                 android:textOn="" />
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:buttonTint="#fff"
                 android:text="记住密码"
                 android:textColor="#fff" />
@@ -94,7 +94,7 @@
                 android:id="@+id/tv_zhuce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
                 android:text="快速注册"
@@ -108,8 +108,8 @@
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="36dp"
         android:layout_marginRight="36dp"

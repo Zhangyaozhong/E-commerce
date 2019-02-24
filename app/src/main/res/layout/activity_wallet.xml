@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.WalletActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop_40"
+        android:paddingStart="@dimen/paddingLeft_24"
+        android:paddingEnd="@dimen/paddingRight_24">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_qianbao" />
+
+        <TextView
+            android:id="@+id/tv_balance"
+            style="@style/WalletTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft_20"
+            android:layout_marginTop="@dimen/marginTop_28"
+            android:text="@string/wallet_balance" />
+
+        <TextView
+            style="@style/WalletTv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_balance"
+            android:layout_marginStart="@dimen/marginLeft_20"
+            android:layout_marginTop="@dimen/marginTop_10"
+            android:text="100.00" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/marginLeft_40"
+        android:paddingRight="@dimen/paddingRight_40">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                style="@style/PersonTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/wallet_monetary" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:layout_centerInParent="true"
+                android:background="#666"></View>
+
+            <TextView
+                style="@style/PersonTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/wallet_consumption_time" />
+            <View
+                android:background="@android:color/darker_gray"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"></View>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

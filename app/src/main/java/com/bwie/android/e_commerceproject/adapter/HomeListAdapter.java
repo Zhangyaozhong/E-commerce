@@ -13,21 +13,30 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bwie.android.e_commerceproject.R;
+import com.bwie.android.e_commerceproject.api.InfoCallback;
 import com.bwie.android.e_commerceproject.bean.product.BannerBean;
 import com.bwie.android.e_commerceproject.bean.product.GoodsListBean;
+import com.bwie.android.lib_core.utils.LogUtil;
+import com.bwie.android.lib_core.utils.SpUtils;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
     public static final int TYPE_BANNER = 0;
     public static final int TYPE_HOT_SELL = 1;
     public static final int TYPE_MAGIC_FASHION = 2;
     public static final int TYPE_QUALITY_LIFE = 3;
+
+    public static boolean isClick = false;
     private List<String> imgList;
-    private List<String> titleList;
     private Context context;
     private List<BannerBean.ResultBean> bannerList;
     private GoodsListBean.ResultBean resultBean;
@@ -65,18 +74,15 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof BannerViewHolder) {
             imgList = new ArrayList<>();
-            titleList = new ArrayList<>();
             for (BannerBean.ResultBean resultBean : bannerList) {
                 String imageUrl = resultBean.imageUrl;
-                String title = resultBean.title;
                 imgList.add(imageUrl);
-                titleList.add(title);
             }
-            ((BannerViewHolder) holder).mXBanner.setData(imgList, null);
-            ((BannerViewHolder) holder).mXBanner.loadImage(new XBanner.XBannerAdapter() {
+            ((BannerViewHolder) holder).xbanner.setData(imgList, null);
+            ((BannerViewHolder) holder).xbanner.loadImage(new XBanner.XBannerAdapter() {
                 @Override
                 public void loadBanner(XBanner banner, Object model, View view, int position) {
                     Glide.with(context)
@@ -84,24 +90,36 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             .into((ImageView) view);
                 }
             });
-            ((BannerViewHolder) holder).mXBanner.setPageTransformer(Transformer.Default);//横向移动
+            ((BannerViewHolder) holder).xbanner.setPageTransformer(Transformer.Default);//横向移动
         } else if (holder instanceof HotSellViewHolder) {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-            ((HotSellViewHolder) holder).mHotSellRv.setLayoutManager(linearLayoutManager);
+            ((HotSellViewHolder) holder).rvHotSell.setLayoutManager(linearLayoutManager);
 //            设置适配器
-            ((HotSellViewHolder) holder).mHotSellRv.setAdapter(new HotSellAdapter(context, resultBean.getRxxp().get(0).getCommodityList()));
-            ((HotSellViewHolder) holder).tv_hot_sell.setText(resultBean.getRxxp().get(0).getName());
+            HotSellAdapter hotSellAdapter = new HotSellAdapter(context, resultBean.getRxxp().get(0).getCommodityList());
+
+            ((HotSellViewHolder) holder).rvHotSell.setAdapter(hotSellAdapter);
+            ((HotSellViewHolder) holder).tvHotSell.setText(resultBean.getRxxp().get(0).getName());
+            //3个小圆点的点击事件
+            ((HotSellViewHolder) holder).ivMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (clickCallback != null) {
+                        clickCallback.moreBtnClick(position, v);
+                    }
+
+                }
+            });
         } else if (holder instanceof MagicFashionViewHolder) {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-            ((MagicFashionViewHolder) holder).mMagicFashionRv.setLayoutManager(linearLayoutManager);
-            ((MagicFashionViewHolder) holder).mMagicFashionRv.setAdapter(new MagicFashionAdapter(context, resultBean.getMlss().get(0).getCommodityList()));
-            ((MagicFashionViewHolder) holder).tv_magic_fashion.setText(resultBean.getMlss().get(0).getName());
+            ((MagicFashionViewHolder) holder).rvMagicFashion.setLayoutManager(linearLayoutManager);
+            ((MagicFashionViewHolder) holder).rvMagicFashion.setAdapter(new MagicFashionAdapter(context, resultBean.getMlss().get(0).getCommodityList()));
+            ((MagicFashionViewHolder) holder).tvMagicFashion.setText(resultBean.getMlss().get(0).getName());
         } else {
-            ((HigeQualityViewHolder) holder).mHigeLifeRv.setLayoutManager(new GridLayoutManager(context, 2));
-            ((HigeQualityViewHolder) holder).mHigeLifeRv.setAdapter(new HighLifeAdapter(context, resultBean.getPzsh().get(0).getCommodityList()));
-            ((HigeQualityViewHolder) holder).tv_high_life.setText(resultBean.getPzsh().get(0).getName());
+            ((HigeQualityViewHolder) holder).rvHighLife.setLayoutManager(new GridLayoutManager(context, 2));
+            ((HigeQualityViewHolder) holder).rvHighLife.setAdapter(new HighLifeAdapter(context, resultBean.getPzsh().get(0).getCommodityList()));
+            ((HigeQualityViewHolder) holder).tvHighLife.setText(resultBean.getPzsh().get(0).getName());
         }
     }
 
@@ -126,48 +144,63 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return 4;
     }
 
+
     class BannerViewHolder extends RecyclerView.ViewHolder {
-        private XBanner mXBanner;
+        @BindView(R.id.xbanner)
+        XBanner xbanner;
 
         public BannerViewHolder(View itemView) {
             super(itemView);
-            mXBanner = itemView.findViewById(R.id.xbanner);
+            ButterKnife.bind(this, itemView);
+
         }
     }
 
     class HotSellViewHolder extends RecyclerView.ViewHolder {
-        private RecyclerView mHotSellRv;
-        private TextView tv_hot_sell;
-        private ImageView iv_more;
+        @BindView(R.id.tv_hot_sell)
+        TextView tvHotSell;
+        @BindView(R.id.iv_more)
+        ImageView ivMore;
+        @BindView(R.id.rv_hot_sell)
+        RecyclerView rvHotSell;
 
         public HotSellViewHolder(View itemView) {
             super(itemView);
-            mHotSellRv = itemView.findViewById(R.id.rv_hot_sell);
-            tv_hot_sell = itemView.findViewById(R.id.tv_hot_sell);
-            iv_more = itemView.findViewById(R.id.iv_more);
+            ButterKnife.bind(this, itemView);
         }
     }
 
     class MagicFashionViewHolder extends RecyclerView.ViewHolder {
-        private RecyclerView mMagicFashionRv;
-        private TextView tv_magic_fashion;
+        @BindView(R.id.tv_magic_fashion)
+        TextView tvMagicFashion;
+        @BindView(R.id.rv_magic_fashion)
+        RecyclerView rvMagicFashion;
 
         public MagicFashionViewHolder(View itemView) {
             super(itemView);
-            mMagicFashionRv = itemView.findViewById(R.id.rv_magic_fashion);
-            tv_magic_fashion = itemView.findViewById(R.id.tv_magic_fashion);
+            ButterKnife.bind(this, itemView);
         }
     }
 
     class HigeQualityViewHolder extends RecyclerView.ViewHolder {
-        private RecyclerView mHigeLifeRv;
-        private TextView tv_high_life;
+        @BindView(R.id.tv_high_life)
+        TextView tvHighLife;
+        @BindView(R.id.rv_high_life)
+        RecyclerView rvHighLife;
 
         public HigeQualityViewHolder(View itemView) {
             super(itemView);
-            mHigeLifeRv = itemView.findViewById(R.id.rv_high_life);
-            tv_high_life = itemView.findViewById(R.id.tv_high_life);
+            ButterKnife.bind(this, itemView);
         }
     }
 
+    public interface ClickCallback {
+        void moreBtnClick(int pos, View view);
+    }
+
+    private ClickCallback clickCallback;
+
+    public void setClickCallback(ClickCallback clickCallback) {
+        this.clickCallback = clickCallback;
+    }
 }

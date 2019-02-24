@@ -51,6 +51,7 @@
                     android:src="@drawable/my_icon_information" />
 
                 <TextView
+                    android:id="@+id/tv_person_information"
                     style="@style/PersonTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,6 +75,7 @@
                     android:src="@drawable/my_icon_circle" />
 
                 <TextView
+                    android:id="@+id/tv_person_circle"
                     style="@style/PersonTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,6 +99,7 @@
                     android:src="@drawable/my_icon_foot" />
 
                 <TextView
+                    android:id="@+id/tv_person_foot"
                     style="@style/PersonTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -120,6 +123,7 @@
                     android:src="@drawable/my_icon_wallet" />
 
                 <TextView
+                    android:id="@+id/tv_person_wallet"
                     style="@style/PersonTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -143,6 +147,7 @@
                     android:src="@drawable/my_icon_address" />
 
                 <TextView
+                    android:id="@+id/tv_person_address"
                     style="@style/PersonTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

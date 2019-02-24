@@ -4,10 +4,13 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.bwie.android.lib_core.application.BaseApp;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.mob.MobSDK;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.bugly.crashreport.CrashReport;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -25,6 +28,7 @@ public class MyApp extends BaseApp {
     public void onCreate() {
         super.onCreate();
         MobSDK.init(this);
+        Fresco.initialize(this);
         RefWatcher refWatcher = LeakCanary.install(this);
         //        RefWatcher refWatcher =  new RefWatcher();
 //        refWatcher.watch();

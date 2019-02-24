@@ -2,41 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:background="#fff"
     android:orientation="vertical"
 
     tools:context=".fragment.HomeFragment">
 
-    <RelativeLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/marginBottom_20"
-        android:layout_marginTop="@dimen/marginTop_36"
-        android:paddingLeft="@dimen/paddingLeft_24"
-        android:paddingRight="@dimen/paddingLeft_24">
-
-        <ImageView
-            android:id="@+id/iv_more"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="@dimen/marginRight_20"
-            android:src="@drawable/common_nav_btn_menu" />
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/common_nav_btn_search" />
-    </RelativeLayout>
+    <include layout="@layout/search_title_layout" />
 
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/mXRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#fff"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_go"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

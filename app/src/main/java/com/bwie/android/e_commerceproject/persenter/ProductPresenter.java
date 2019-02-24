@@ -6,6 +6,7 @@ import com.bwie.android.e_commerceproject.bean.product.GoodsListBean;
 import com.bwie.android.e_commerceproject.bean.product.SecondCategoryBean;
 import com.bwie.android.e_commerceproject.contract.product.ProductContract;
 import com.bwie.android.e_commerceproject.model.product.ProductModel;
+import com.bwie.android.lib_network.bean.BaseResponse;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -26,9 +27,7 @@ public class ProductPresenter extends ProductContract.ProductPresenter {
             productModel.bannerData(params, new ProductModel.IProductCallback() {
                 @Override
                 public void failure(String msg) {
-                    if (iProductView != null) {
-                        iProductView.failure(msg);
-                    }
+
                 }
 
                 @Override
@@ -50,9 +49,7 @@ public class ProductPresenter extends ProductContract.ProductPresenter {
             productModel.goodsData(params, new ProductModel.IProductCallback() {
                 @Override
                 public void failure(String msg) {
-                    if (iProductView != null) {
-                        iProductView.failure(msg);
-                    }
+
                 }
 
                 @Override
@@ -72,6 +69,7 @@ public class ProductPresenter extends ProductContract.ProductPresenter {
 
     /**
      * 一级类目
+     *
      * @param params
      */
     @Override
@@ -80,9 +78,7 @@ public class ProductPresenter extends ProductContract.ProductPresenter {
             productModel.firstCategory(params, new ProductModel.IProductCallback() {
                 @Override
                 public void failure(String msg) {
-                    if (iProductView != null) {
-                        iProductView.failure(msg);
-                    }
+
                 }
 
                 @Override
@@ -105,9 +101,7 @@ public class ProductPresenter extends ProductContract.ProductPresenter {
             productModel.secondCategory(params, new ProductModel.IProductCallback() {
                 @Override
                 public void failure(String msg) {
-                    if (iProductView != null) {
-                        iProductView.failure(msg);
-                    }
+
                 }
 
                 @Override
@@ -120,6 +114,31 @@ public class ProductPresenter extends ProductContract.ProductPresenter {
                     }
                 }
             });
+        }
+    }
+
+    @Override
+    public void getLabelList(HashMap<String, String> params) {
+        if (productModel != null) {
+            productModel.getLabelList(params, new ProductModel.ModelCallback() {
+                @Override
+                public void error(String msg) {
+
+                }
+
+                @Override
+                public void success(List list) {
+                    if (iProductView != null) {
+                        iProductView.labelSuccess(list);
+                    }
+                }
+            });
+        }
+    }
+
+    public void destory() {
+        if (iProductView != null) {
+            iProductView = null;
         }
     }
 }

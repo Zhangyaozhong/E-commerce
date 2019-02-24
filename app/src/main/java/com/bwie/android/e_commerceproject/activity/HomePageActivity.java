@@ -1,8 +1,9 @@
-package com.bwie.android.e_commerceproject.view;
+package com.bwie.android.e_commerceproject.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -32,7 +33,7 @@ public class HomePageActivity extends BaseActivity implements RadioGroup.OnCheck
     private MyFragment myFragment;
 
     @Override
-    protected void initData() {
+    public void initData() {
         homeFragment = new HomeFragment();
         circleFragmennt = new CircleFragmennt();
         cartFragment = new CartFragment();
@@ -48,14 +49,15 @@ public class HomePageActivity extends BaseActivity implements RadioGroup.OnCheck
 
     }
 
+
     @Override
-    protected void initView() {
+    public void initView() {
         //默认展示首页
 //        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
 //        默认选中首页
         rg_tab.check(rg_tab.getChildAt(0).getId());
 
-        rg_tab.setOnCheckedChangeListener(this);
+       rg_tab.setOnCheckedChangeListener(this);
 
         mSendrl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +77,7 @@ public class HomePageActivity extends BaseActivity implements RadioGroup.OnCheck
      * @return
      */
     @Override
-    protected int getLayoutId() {
+    public int getLayoutId() {
         return R.layout.activity_home_page;
     }
 

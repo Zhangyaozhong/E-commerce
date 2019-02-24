@@ -1,6 +1,7 @@
 package com.bwie.android.e_commerceproject.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bwie.android.e_commerceproject.R;
+import com.bwie.android.e_commerceproject.activity.CommodityInfoActivity;
+import com.bwie.android.e_commerceproject.api.InfoCallback;
 import com.bwie.android.e_commerceproject.bean.product.GoodsListBean;
 
 import java.util.List;
@@ -25,7 +28,6 @@ public class HighLifeAdapter extends RecyclerView.Adapter<HighLifeAdapter.LifeVi
         this.list = list;
     }
 
-
     @NonNull
     @Override
     public LifeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,7 +38,7 @@ public class HighLifeAdapter extends RecyclerView.Adapter<HighLifeAdapter.LifeVi
 
 
     @Override
-    public void onBindViewHolder(@NonNull LifeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LifeViewHolder holder, final int position) {
         String price = list.get(position).getPrice();
         String commodityName = list.get(position).getCommodityName();
         String masterPic = list.get(position).getMasterPic();
@@ -48,6 +50,15 @@ public class HighLifeAdapter extends RecyclerView.Adapter<HighLifeAdapter.LifeVi
         } else {
             holder.v.setVisibility(View.VISIBLE);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String commodityId = list.get(position).getCommodityId();
+                Intent intent = new Intent(context, CommodityInfoActivity.class);
+                intent.putExtra("commodityId", commodityId);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -1,32 +1,40 @@
 package com.bwie.android.e_commerceproject.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.design.widget.TabLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.bwie.android.e_commerceproject.R;
+import com.bwie.android.e_commerceproject.activity.SearchActivity;
 import com.bwie.android.e_commerceproject.adapter.HomeListAdapter;
 import com.bwie.android.e_commerceproject.adapter.PopAdapter;
+import com.bwie.android.e_commerceproject.adapter.RxxpLabelAdapter;
 import com.bwie.android.e_commerceproject.bean.product.BannerBean;
 import com.bwie.android.e_commerceproject.bean.product.FirstCategoryBean;
 import com.bwie.android.e_commerceproject.bean.product.GoodsListBean;
+import com.bwie.android.e_commerceproject.bean.product.LabelListBean;
 import com.bwie.android.e_commerceproject.bean.product.PopBean;
 import com.bwie.android.e_commerceproject.bean.product.SecondCategoryBean;
 import com.bwie.android.e_commerceproject.contract.product.ProductContract;
 import com.bwie.android.e_commerceproject.persenter.ProductPresenter;
 import com.bwie.android.lib_core.base.BaseFragment;
-import com.bwie.android.lib_core.base.mvp.BasePersenter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,17 +43,26 @@ import java.util.List;
 import butterknife.BindView;
 
 
-public class HomeFragment extends BaseFragment implements ProductContract.IProductView, View.OnClickListener {
-    private ProductPresenter productPresenter;
-    private List<BannerBean.ResultBean> bannerList = new ArrayList<>();
-    private List<FirstCategoryBean.ResultBean> firstList;
-    private List<PopBean> popList;
+public class HomeFragment extends BaseFragment implements ProductContract.IProductView, View.OnClickListener, HomeListAdapter.ClickCallback {
+    @BindView(R.id.et_search)
+    EditText etSearch;
+
     @BindView(R.id.mXRecycleView)
     XRecyclerView mXRecycleView;
     @BindView(R.id.iv_more)
     ImageView iv_more;
+    @BindView(R.id.rv_go)
+    RecyclerView rvGo;
+    private List<String> labelId = new ArrayList<>();
+    //P层的对象
+    private ProductPresenter productPresenter;
+    private List<BannerBean.ResultBean> bannerList = new ArrayList<>();
+    //    一级类目
+    private List<FirstCategoryBean.ResultBean> firstList;
+    private List<PopBean> popList;
     private List<FirstCategoryBean.ResultBean> data;
     private int[] imgs;
+    private HomeListAdapter homeListAdapter;
 
     @Override
     protected void setUpData() {
@@ -62,14 +79,21 @@ public class HomeFragment extends BaseFragment implements ProductContract.IProdu
         productPresenter.getFirstCategory(new HashMap<String, String>());
 
     }
-
     /**
      * 一些View的相关操作
      */
     @Override
     protected void setUpView() {
+       /* if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }*/
+//        搜索框的点击事件
+        etSearch.setOnClickListener(this);
+/*//        搜索按钮的事件
+        ivSearch.setOnClickListener(this);*/
         //更多点击监听
         iv_more.setOnClickListener(this);
+        rvGo.setLayoutManager(new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false));
         //XrecycleView设置布局以及方向
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -115,7 +139,15 @@ public class HomeFragment extends BaseFragment implements ProductContract.IProdu
      */
     @Override
     public void goodsSuccess(GoodsListBean.ResultBean result1) {
-        mXRecycleView.setAdapter(new HomeListAdapter(getActivity(), bannerList, result1));
+        String rxxpId = result1.getRxxp().get(0).getId();
+        String mlssId = result1.getMlss().get(0).getId();
+        String pzshId = result1.getPzsh().get(0).getId();
+        labelId.add(rxxpId);
+        labelId.add(mlssId);
+        labelId.add(pzshId);
+        homeListAdapter = new HomeListAdapter(getActivity(), bannerList, result1);
+        homeListAdapter.setClickCallback(this);
+        mXRecycleView.setAdapter(homeListAdapter);
 //        mXRecycleView.addItemDecoration(new SpacesItemDecoration(10));
 
     }
@@ -147,34 +179,29 @@ public class HomeFragment extends BaseFragment implements ProductContract.IProdu
     @Override
     public void secondCategorySuccess(List<SecondCategoryBean.ResultBean> resultBean) {
         popList = new ArrayList<>();
-        for (SecondCategoryBean.ResultBean bean : resultBean) {
-            if (bean != null) {
-                String name = bean.getName();
-                popList.add(new PopBean(name, imgs));
+        if (resultBean != null && resultBean.size() > 0) {
+            for (SecondCategoryBean.ResultBean bean : resultBean) {
+                if (bean != null) {
+                    String name = bean.getName();
+                    popList.add(new PopBean(name, imgs));
+                }
             }
         }
+
     }
 
-
+    /**
+     * 根据商品列表归属标签查询商品信息
+     *
+     * @param response
+     */
     @Override
-    public BasePersenter initPeresnter() {
-        return null;
+    public void labelSuccess(List<LabelListBean> response) {
+
+        RxxpLabelAdapter rxxpLabelAdapter = new RxxpLabelAdapter(response, getActivity());
+        rvGo.setAdapter(rxxpLabelAdapter);
     }
 
-    @Override
-    public void failure(String msg) {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
 
     @Override
     public void onClick(View view) {
@@ -222,6 +249,11 @@ public class HomeFragment extends BaseFragment implements ProductContract.IProdu
                 window.showAsDropDown(view, 0, 16);
 
                 break;
+//                搜索按钮的点击事件
+            case R.id.et_search:
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -236,4 +268,31 @@ public class HomeFragment extends BaseFragment implements ProductContract.IProdu
         pop.setBackgroundDrawable(new ColorDrawable(Color.RED));
         pop.showAsDropDown(textView);
     }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        productPresenter.destory();
+//        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void moreBtnClick(int pos, View view) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("labelId", labelId.get(pos));
+        params.put("page", "1");
+        params.put("count", "10");
+        productPresenter.getLabelList(params);
+        if (rvGo.getVisibility() == View.GONE) {
+            rvGo.setVisibility(View.VISIBLE);
+            mXRecycleView.setVisibility(View.GONE);
+
+        } else {
+            rvGo.setVisibility(View.GONE);
+            mXRecycleView.setVisibility(View.VISIBLE);
+        }
+    }
+
+
 }
